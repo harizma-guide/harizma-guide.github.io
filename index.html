@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ХАРИЗМА — Премиум гид по личной магнетике</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f0d067;
+            --gold-dark: #b8941f;
+            --black: #0a0a0a;
+            --black-soft: #141414;
+            --black-card: #1a1a1a;
+            --white: #f5f5f5;
+            --gray: #888;
+            --gray-dark: #444;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+
+        /* ===== SELECTION ===== */
+        ::selection { background: var(--gold); color: #000; }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        @keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(212,175,55,0.3); } 50% { box-shadow: 0 0 40px rgba(212,175,55,0.5); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes scrollDown { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(20px); opacity: 0; } }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            text-align: center;
+            padding: 2rem;
+            background:
+                radial-gradient(ellipse at 50% 30%, rgba(212,175,55,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(212,175,55,0.05) 0%, transparent 40%),
+                #0a0a0a;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(212,175,55,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212,175,55,0.03) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 900px; }
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            border: 1px solid var(--gold-dark);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+            animation: fadeUp 1s ease 0.2s both;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #f5f5f5 0%, #d4af37 50%, #b8941f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+            animation: fadeUp 1s ease 0.4s both;
+        }
+        .hero h1 .accent {
+            display: block;
+            font-style: italic;
+            font-weight: 400;
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            color: var(--gray);
+            -webkit-text-fill-color: var(--gray);
+            margin-top: 0.5rem;
+        }
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+            color: #c0c0c0;
+            max-width: 650px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+            line-height: 1.6;
+            animation: fadeUp 1s ease 0.6s both;
+        }
+        .hero-cta {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            animation: fadeUp 1s ease 0.8s both;
+        }
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 48px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: #0a0a0a;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-gold::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s;
+        }
+        .btn-gold:hover::before { left: 100%; }
+        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(212,175,55,0.4); }
+        .hero-price-tag {
+            font-size: 0.85rem;
+            color: var(--gray);
+            letter-spacing: 1px;
+        }
+        .hero-price-tag span { color: var(--gold); font-weight: 600; }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 2px solid var(--gold-dark);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 8px;
+        }
+        .scroll-indicator::after {
+            content: '';
+            width: 4px; height: 8px;
+            background: var(--gold);
+            border-radius: 2px;
+            animation: scrollDown 1.5s infinite;
+        }
+
+        /* ===== SECTION COMMON ===== */
+        section { padding: 6rem 2rem; position: relative; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .section-label {
+            text-align: center;
+            font-size: 0.75rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            line-height: 1.2;
+        }
+        .section-title em { color: var(--gold); font-style: italic; }
+        .section-subtitle {
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            font-weight: 400;
+        }
+        .divider-gold {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 0 auto 2rem;
+        }
+
+        /* ===== PROBLEM SECTION ===== */
+        .problem-section { background: var(--black-soft); }
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .problem-card {
+            background: var(--black-card);
+            border: 1px solid #2a2a2a;
+            border-radius: 4px;
+            padding: 2.5rem;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 0;
+            background: var(--gold);
+            transition: height 0.5s;
+        }
+        .problem-card:hover::before { height: 100%; }
+        .problem-card:hover { border-color: var(--gold-dark); transform: translateY(-5px); }
+        .problem-icon {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+        .problem-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .problem-card p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* ===== PILLARS SECTION ===== */
+        .pillars-section {
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.06) 0%, transparent 60%),
+                #0a0a0a;
+        }
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .pillar-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(180deg, var(--black-card) 0%, #0f0f0f 100%);
+            border: 1px solid #2a2a2a;
+            border-radius: 4px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+        .pillar-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 10px 40px rgba(212,175,55,0.15);
+            transform: translateY(-8px);
+        }
+        .pillar-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--gold-dark);
+            font-weight: 900;
+            font-style: italic;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+        .pillar-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .pillar-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* ===== BENEFITS SECTION ===== */
+        .benefits-section { background: var(--black-soft); }
+        .benefits-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.8rem 0;
+            border-bottom: 1px solid #1e1e1e;
+            transition: all 0.3s;
+        }
+        .benefit-item:last-child { border-bottom: none; }
+        .benefit-item:hover { padding-left: 1rem; }
+        .benefit-check {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--gold-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .benefit-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+        .benefit-text p {
+            font-size: 0.92rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* ===== CONTENT PREVIEW ===== */
+        .preview-section {
+            background: #0a0a0a;
+        }
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .preview-card {
+            background: var(--black-card);
+            border: 1px solid #2a2a2a;
+            border-radius: 4px;
+            padding: 2.5rem;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .preview-card:hover {
+            border-color: var(--gold-dark);
+            transform: translateY(-5px);
+        }
+        .preview-card .chapter-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .preview-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .preview-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* ===== CTA / PRICE SECTION ===== */
+        .cta-section {
+            background:
+                radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.1) 0%, transparent 50%),
+                #0a0a0a;
+            text-align: center;
+            padding: 8rem 2rem;
+        }
+        .cta-box {
+            max-width: 550px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 1px solid var(--gold-dark);
+            border-radius: 4px;
+            padding: 3.5rem 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(135deg, var(--gold), transparent, var(--gold-dark), transparent, var(--gold));
+            z-index: -1;
+            border-radius: 4px;
+            opacity: 0.3;
+        }
+        .cta-box h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        .cta-box .cta-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+        }
+        .price-block {
+            margin-bottom: 2.5rem;
+        }
+        .price-old {
+            font-size: 1.2rem;
+            color: var(--gray-dark);
+            text-decoration: line-through;
+            margin-bottom: 0.3rem;
+        }
+        .price-new {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--gold);
+            font-weight: 700;
+            line-height: 1;
+        }
+        .price-new .currency { font-size: 1.8rem; vertical-align: super; }
+        .price-label {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+        .cta-features {
+            text-align: left;
+            margin-bottom: 2.5rem;
+            list-style: none;
+        }
+        .cta-features li {
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            color: #c0c0c0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cta-features li::before {
+            content: '✦';
+            color: var(--gold);
+            font-size: 0.7rem;
+        }
+        .cta-box .btn-gold { width: 100%; justify-content: center; }
+        .cta-note {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--gray-dark);
+            letter-spacing: 1px;
+        }
+
+        /* ===== PAYMENT MODAL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .modal-overlay.active { display: flex; animation: fadeUp 0.4s ease; }
+        .modal {
+            max-width: 480px;
+            width: 100%;
+            background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 1px solid var(--gold-dark);
+            border-radius: 6px;
+            padding: 2.5rem;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .modal-close:hover { color: var(--gold); }
+        .modal h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .modal-subtitle {
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            background: #0a0a0a;
+            border: 1px solid #2a2a2a;
+            border-radius: 3px;
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        .form-group input::placeholder { color: #444; }
+        .payment-methods {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .pay-method {
+            flex: 1;
+            padding: 12px;
+            background: #0a0a0a;
+            border: 1px solid #2a2a2a;
+            border-radius: 3px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        .pay-method:hover, .pay-method.active {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        .modal .btn-gold { width: 100%; justify-content: center; margin-top: 0.5rem; }
+        .modal-note {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--gray-dark);
+            margin-top: 1.2rem;
+            letter-spacing: 1px;
+        }
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        .pay-error {
+            display: none;
+            text-align: center;
+            color: #ef4444;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ===== SUCCESS MODAL ===== */
+        .success-modal {
+            text-align: center;
+        }
+        .success-icon {
+            width: 70px; height: 70px;
+            margin: 0 auto 1.5rem;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--gold);
+        }
+        .success-modal h2 { margin-bottom: 1rem; }
+        .success-modal p { color: var(--gray); margin-bottom: 2rem; line-height: 1.7; }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: #0a0a0a;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .download-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(212,175,55,0.4); }
+
+        /* ===== FAQ ===== */
+        .faq-section { background: var(--black-soft); }
+        .faq-item {
+            max-width: 750px;
+            margin: 0 auto 1rem;
+            border: 1px solid #2a2a2a;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+        .faq-item.active { border-color: var(--gold-dark); }
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--white);
+            user-select: none;
+            transition: all 0.3s;
+        }
+        .faq-question:hover { color: var(--gold); }
+        .faq-toggle {
+            color: var(--gold);
+            font-size: 1.3rem;
+            transition: transform 0.3s;
+        }
+        .faq-item.active .faq-toggle { transform: rotate(45deg); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s;
+            padding: 0 2rem;
+            color: var(--gray);
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 2rem 1.5rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #050505;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        footer p {
+            font-size: 0.85rem;
+            color: var(--gray-dark);
+            letter-spacing: 1px;
+        }
+        footer .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            section { padding: 4rem 1.2rem; }
+            .cta-section { padding: 5rem 1.2rem; }
+            .cta-box { padding: 2.5rem 1.5rem; }
+            .price-new { font-size: 2.8rem; }
+            .hero h1 { font-size: 3rem; }
+            .modal { padding: 2rem 1.5rem; }
+            .payment-methods { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">Мини-курс · PDF гид</div>
+        <h1>
+            Харизма
+            <span class="accent">искусство быть услышанным</span>
+        </h1>
+        <p class="hero-subtitle">
+            Четыре фундамента. Восемь техник. Ноль воды.<br>
+            Только суть, проверенная на практике — в одном PDF.
+        </p>
+        <div class="hero-cta">
+            <a href="#cta" class="btn-gold">Получить гид</a>
+            <div class="hero-price-tag">Всего <span>99 ₽</span> · Мгновенный доступ к PDF</div>
+        </div>
+    </div>
+    <div class="scroll-indicator"></div>
+</section>
+
+<!-- ===== BENEFITS ===== -->
+<section class="benefits-section" id="benefits">
+    <div class="container">
+        <div class="section-label reveal">Что внутри</div>
+        <div class="divider-gold reveal"></div>
+        <h2 class="section-title reveal">Что вы получите <em>в гиде</em></h2>
+        <p class="section-subtitle reveal">
+            Краткий, плотный, без воды. Только рабочие техники и принципы, которые можно применить сегодня.
+        </p>
+        <div class="benefits-list">
+            <div class="benefit-item reveal">
+                <div class="benefit-check">✓</div>
+                <div class="benefit-text">
+                    <h3>Главный секрет харизмы</h3>
+                    <p>Секрет, который ты узнаешь только после покупки этого гида</p>
+                </div>
+            </div>
+            <div class="benefit-item reveal">
+                <div class="benefit-check">✓</div>
+                <div class="benefit-text">
+                    <h3>4 фундамента харизмы</h3>
+                    <p>База, без который о харизме говорить не о чем</p>
+                </div>
+            </div>
+            <div class="benefit-item reveal">
+                <div class="benefit-check">✓</div>
+                <div class="benefit-text">
+                    <h3>4 вида харизмы</h3>
+                    <p>Как и у растений и животных есть свои виды, так и у харизмы есть свои виды</p>
+                </div>
+            </div>
+            <div class="benefit-item reveal">
+                <div class="benefit-check">✓</div>
+                <div class="benefit-text">
+                    <h3>Техника визуализации</h3>
+                    <p>Что это такое и почему она столь важна, как очки слабовидящему</p>
+                </div>
+            </div>
+            <div class="benefit-item reveal">
+                <div class="benefit-check">✓</div>
+                <div class="benefit-text">
+                    <h3>Особенности человеческого восприятия речи</h3>
+                    <p>Поняв природу понимания человеком речи, ты сможешь граммотно не просто повлиять на людей, но и доказать свою точку зрения</p>
+                </div>
+            </div>
+            <div class="benefit-item reveal">
+                <div class="benefit-check">✓</div>
+                <div class="benefit-text">
+                    <h3>Правила первых мгновений</h3>
+                    <p>Ты поймешь свои ошибки при коммуникации с людьми</p>
+                </div>
+            </div>
+            <div class="benefit-item reveal">
+                <div class="benefit-check">✓</div>
+                <div class="benefit-text">
+                    <h3>Искусство задавать вопросы</h3>
+                    <p>Один из хитрых и важных приемов для поддержания нужной атмосферы общения</p>
+                </div>
+            </div>
+            <div class="benefit-item reveal">
+                <div class="benefit-check">✓</div>
+                <div class="benefit-text">
+                    <h3>Сила паузы и темпа</h3>
+                    <p>Уверенность, как фундамент харизмы нуждается в определенных техниках, без которых харизма тебе говорит "Пока"</p>
+                </div>
+            </div>
+            <div class="benefit-item reveal">
+                <div class="benefit-check">✓</div>
+                <div class="benefit-text">
+                    <h3>Зрительный контакт</h3>
+                    <p>Раскрывается его роль в коммуникации</p>
+                </div>
+            </div>
+            <div class="benefit-item reveal">
+                <div class="benefit-check">✓</div>
+                <div class="benefit-text">
+                    <h3>Правильное завершение</h3>
+                    <p>Как закончить речь плавно и мягко — ведь именно последние впечатления закрепляются надолго.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA / PRICE ===== -->
+<section class="cta-section" id="cta">
+    <div class="container">
+        <div class="section-label reveal">Оплата и доступ</div>
+        <div class="divider-gold reveal"></div>
+        <h2 class="section-title reveal">Получите гид <em>прямо сейчас</em></h2>
+        <p class="section-subtitle reveal">Мгновенный доступ к PDF после оплаты. Без ожидания, без рассылок.</p>
+        <div class="cta-box reveal">
+            <h2>Гид «Харизма»</h2>
+            <p class="cta-desc">Краткий практический курс в формате PDF</p>
+            <div class="price-block">
+                <div class="price-old">1 990 ₽</div>
+                <div class="price-new">99 <span class="currency">₽</span></div>
+                <div class="price-label">Ограниченная цена</div>
+            </div>
+            <ul class="cta-features">
+                <li>PDF-файл, 12 глав, только суть</li>
+                <li>Ключевые техники харизмы</li>
+                <li>Доступ навсегда после оплаты</li>
+                <li>Чипсы, кола тоже стоят 99 ₽, но после них значимой пользы нет, а покупая этот гид, вы получаете пользу на всю жизнь для ежедневных общений с крутым результатом</li>
+            </ul>
+            <button class="btn-gold" onclick="openPayment()">Купить за 99 ₽</button>
+            <p class="cta-note">Безопасная оплата через ЮKassa</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq-section" id="faq">
+    <div class="container">
+        <div class="section-label reveal">Вопросы</div>
+        <div class="divider-gold reveal"></div>
+        <h2 class="section-title reveal">Частые <em>вопросы</em></h2>
+        <div style="max-width:750px;margin:3rem auto 0;">
+            <div class="faq-item reveal">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>В каком формате гид?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    PDF-файл, который открывается на любом устройстве — телефон, планшет, компьютер.
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Почему так дёшево — всего 99 ₽?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Это цена для тех, кто действует сейчас. Гид содержит только суть без воды — вы получаете концентрат практики за минимальную цену.
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Подойдёт ли новичку?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Да. Гид написан простым языком, без академических терминов.
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Как происходит оплата?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Вы вводите email и выбираете способ оплаты (карта или СБП). Затем вас перенаправит на защищённую страницу ЮKassa, где вы введёте данные карты. После успешной оплаты PDF приходит на почту, а также становится доступным для скачивания прямо на сайте.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer style="background: #0a0a0a; border-top: 1px solid #333; padding: 20px 0; margin-top: 50px; font-size: 12px; color: #666; text-align: center;">
+    <div>Самозанятый: Газетдинов Малик Равилевич</div>
+    <div>ИНН: 022541182185</div> <!-- ВСТАВЬТЕ СЮДА ВАШ ИНН -->
+    <div>Статус подтвержден в ФНС (Налог на профессиональный доход)</div>
+</footer>
+
+<!-- ===== PAYMENT MODAL ===== -->
+<div class="modal-overlay" id="paymentModal">
+    <div class="modal">
+        <button class="modal-close" onclick="closePayment()">&times;</button>
+        <h2>Оплата гида</h2>
+        <p class="modal-subtitle">Гид «Харизма» · 99 ₽</p>
+        <div class="pay-error" id="payError"></div>
+        <form id="paymentForm" onsubmit="processPayment(event)">
+            <div class="form-group">
+                <label>Email для получения PDF</label>
+                <input type="email" id="emailInput" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+                <label>Способ оплаты</label>
+                <div class="payment-methods">
+                    <div class="pay-method active" data-method="card" onclick="selectMethod(this)">Банковская карта</div>
+                    <div class="pay-method" data-method="sbp" onclick="selectMethod(this)">СБП</div>
+                </div>
+            </div>
+            <button type="submit" class="btn-gold" id="payBtn">Оплатить 99 ₽</button>
+            <div class="secure-badge">
+                🔒 Защищённое соединение SSL · ЮKassa
+            </div>
+            <p class="modal-note">Нажимая «Оплатить», вы соглашаетесь с условиями оферты</p>
+        </form>
+    </div>
+</div>
+
+<!-- ===== SUCCESS MODAL ===== -->
+<div class="modal-overlay" id="successModal">
+    <div class="modal success-modal">
+        <button class="modal-close" onclick="closeSuccess()">&times;</button>
+        <div class="success-icon">✓</div>
+        <h2>Оплата прошла успешно!</h2>
+        <p>Гид «Харизма» отправлен на вашу почту.<br>Также вы можете скачать PDF прямо сейчас.</p>
+        <a href="pay.php?action=download" class="download-btn">⬇ Скачать PDF</a>
+    </div>
+</div>
+
+<script>
+    // ===== ANDROID BACK BUTTON HANDLING =====
+    // Когда модальное окно открыто, добавляем состояние в историю.
+    // При нажатии "назад" модалка закрывается, а страница остаётся.
+    let modalStatePushed = false;
+
+    function pushModalState() {
+        history.pushState({ modal: true }, '');
+        modalStatePushed = true;
+    }
+
+    function popModalState() {
+        if (modalStatePushed) {
+            modalStatePushed = false;
+            history.back(); // убираем добавленное состояние
+        }
+    }
+
+    // ===== SCROLL REVEAL =====
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('visible'), i * 80);
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ===== FAQ =====
+    function toggleFAQ(el) {
+        const item = el.parentElement;
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+    }
+
+    // ===== PAYMENT MODAL =====
+    let selectedMethod = 'card';
+
+    function openPayment() {
+        document.getElementById('paymentModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        pushModalState();
+    }
+    function closePayment() {
+        if (document.getElementById('paymentModal').classList.contains('active')) {
+            document.getElementById('paymentModal').classList.remove('active');
+            document.body.style.overflow = '';
+            popModalState();
+        }
+    }
+    function closeSuccess() {
+        if (document.getElementById('successModal').classList.contains('active')) {
+            document.getElementById('successModal').classList.remove('active');
+            document.body.style.overflow = '';
+            popModalState();
+        }
+    }
+
+    function selectMethod(el) {
+        document.querySelectorAll('.pay-method').forEach(m => m.classList.remove('active'));
+        el.classList.add('active');
+        selectedMethod = el.dataset.method;
+    }
+
+    // ===== REAL PAYMENT VIA pay.php =====
+    async function processPayment(e) {
+        e.preventDefault();
+
+        const btn = document.getElementById('payBtn');
+        const errBox = document.getElementById('payError');
+        const originalText = btn.textContent;
+        const email = document.getElementById('emailInput').value;
+
+        errBox.style.display = 'none';
+        btn.disabled = true;
+        btn.textContent = 'Перенаправление...';
+        btn.style.opacity = '0.7';
+
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('method', selectedMethod);
+
+        try {
+            const res = await fetch('pay.php?action=create', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await res.json();
+
+            if (data.url) {
+                // Перенаправляем на страницу оплаты ЮKassa
+                window.location.href = data.url;
+            } else {
+                errBox.textContent = data.error || 'Ошибка создания платежа';
+                errBox.style.display = 'block';
+                btn.disabled = false;
+                btn.textContent = originalText;
+                btn.style.opacity = '1';
+            }
+        } catch (err) {
+            errBox.textContent = 'Сетевая ошибка. Попробуйте снова.';
+            errBox.style.display = 'block';
+            btn.disabled = false;
+            btn.textContent = originalText;
+            btn.style.opacity = '1';
+        }
+    }
+
+    // ===== SUCCESS REDIRECT FROM ЮKassa =====
+    // ЮKassa возвращает пользователя на URL с ?status=success
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('status') === 'success') {
+        // Очищаем URL, чтобы при обновлении модалка не открывалась снова
+        const cleanURL = window.location.origin + window.location.pathname;
+        window.history.replaceState({}, document.title, cleanURL);
+
+        // Открываем модалку успеха
+        document.getElementById('successModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        pushModalState();
+    }
+
+    // ===== CLOSE MODAL ON OVERLAY CLICK =====
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+
+    // ===== ESC TO CLOSE =====
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+            document.body.style.overflow = '';
+            popModalState();
+        }
+    });
+
+    // ===== ANDROID BACK BUTTON =====
+    // При нажатии кнопки "назад" на Android: если открыто модальное окно —
+    // закрываем его, страница при этом не закрывается.
+    window.addEventListener('popstate', function(e) {
+        if (document.getElementById('paymentModal').classList.contains('active')) {
+            document.getElementById('paymentModal').classList.remove('active');
+            document.body.style.overflow = '';
+            modalStatePushed = false;
+        }
+        if (document.getElementById('successModal').classList.contains('active')) {
+            document.getElementById('successModal').classList.remove('active');
+            document.body.style.overflow = '';
+            modalStatePushed = false;
+        }
+    });
+</script>
+
+</body>
+</html>
