@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ошибка оплаты — Харизма</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #0a0a0f;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Фоновое свечение */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .error-wrap {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
+        }
+
+        .error-card {
+            background: linear-gradient(145deg, #15151f 0%, #0f0f17 100%);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 24px;
+            padding: 56px 40px 40px;
+            text-align: center;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5),
+                        0 0 0 1px rgba(212, 175, 55, 0.05) inset;
+            animation: cardAppear 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(24px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Иконка-крестик */
+        .error-icon {
+            width: 88px;
+            height: 88px;
+            margin: 0 auto 28px;
+            border-radius: 50%;
+            /* красный акцент вместо золотого */
+            background: linear-gradient(135deg, #ff4d4d 0%, #b00000 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 0 40px rgba(255, 77, 77, 0.35),
+                        0 0 0 8px rgba(255, 77, 77, 0.08);
+            animation: checkPulse 0.6s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes checkPulse {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .error-icon svg {
+            width: 36px;
+            height: 36px;
+            stroke: #0a0a0f;
+            stroke-width: 3.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 60;
+            stroke-dashoffset: 60;
+            animation: drawX 0.5s 0.6s ease-out forwards;
+        }
+
+        @keyframes drawX {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Лейбл */
+        .label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255, 77, 77, 0.8);
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 14px;
+            /* белый текст с лёгким градиентом */
+            background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .desc {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .desc:last-of-type {
+            margin-bottom: 32px;
+        }
+
+        /* Кнопка повторить / поддержка */
+        .btn-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px 24px;
+            /* кнопка в стиле «нейтральная», не яркая, чтобы не конфликтовать с красным */
+            background: rgba(255, 255, 255, 0.06);
+            color: #d4af37;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 12px 32px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-action:active {
+            transform: translateY(0);
+        }
+
+        .btn-action svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Кнопка назад */
+        .btn-back {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: color 0.25s ease, background 0.25s ease;
+        }
+
+        .btn-back:hover {
+            color: rgba(212, 175, 55, 0.8);
+            background: rgba(212, 175, 55, 0.06);
+        }
+
+        /* Футер */
+        .footer {
+            margin-top: 32px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.25);
+            line-height: 1.7;
+        }
+
+        .footer a {
+            color: rgba(212, 175, 55, 0.5);
+            text-decoration: none;
+        }
+
+        /* Адаптив */
+        @media (max-width: 500px) {
+            .error-card {
+                padding: 40px 24px 32px;
+                border-radius: 20px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .error-icon {
+                width: 76px;
+                height: 76px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-wrap">
+        <div class="error-card">
+            <div class="error-icon">
+                <svg viewBox="0 0 50 50">
+                    <path d="M14 14 L36 36 M14 36 L36 14"/>
+                </svg>
+            </div>
+
+            <div class="label">Ошибка оплаты</div>
+            <h2>Не удалось завершить платёж</h2>
+            <p class="desc">Произошла ошибка при проведении транзакции.</p>
+
+            <!-- Кнопка «Повторить» или «Поддержка» -->
+            <a href="https://harizma-guide.github.io/" class="btn-action">
+                На главную
+            </a>
+        </div>
+    </div>
+</body>
+</html>
