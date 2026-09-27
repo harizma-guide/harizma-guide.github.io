@@ -226,12 +226,17 @@
         /* ===== PROBLEM SECTION ===== */
         .problem-section { background: var(--black-soft); }
         .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+    display: grid;
+    /* На больших экранах — ровно 4 колонки, на мобильных — по одной */
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    /* Для ПК делаем 4 колонки явно, если ширина позволяет */
+    @media (min-width: 1200px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
         .problem-card {
             background: var(--black-card);
             border: 1px solid #2a2a2a;
@@ -259,13 +264,13 @@
         }
         .problem-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--white);
             margin-bottom: 1rem;
             font-weight: 600;
         }
         .problem-card p {
-            font-size: 0.95rem;
+            font-size: 0.8rem;
             color: var(--gray);
             line-height: 1.7;
         }
@@ -801,6 +806,51 @@
         </div>
     </div>
     <div class="scroll-indicator"></div>
+</section>
+
+    <section class="problem-section">
+    <div class="container">
+        <div class="section-label reveal">С чем вы сталкиваетесь</div>
+        <div class="divider-gold reveal"></div>
+        <h2 class="section-title reveal">Проблемы из‑за <em>нехватки харизмы</em></h2>
+        <p class="section-subtitle reveal">
+            Эти ситуации знакомы многим — и именно их помогает решить гид.
+        </p>
+
+        <div class="problem-grid">
+            <div class="problem-card reveal">
+                <div class="problem-icon">💬</div>
+                <h3>Не можете удержать внимание собеседника</h3>
+                <p>
+                    Человек отвлекается, смотрит в телефон, перебивает. Кажется, что ваши слова не имеют веса — даже если вы говорите по делу.
+                </p>
+            </div>
+
+            <div class="problem-card reveal">
+                <div class="problem-icon">🗣️</div>
+                <h3>Слова «не цепляют» и не запоминаются</h3>
+                <p>
+                    Вы стараетесь донести мысль, но после разговора вас не цитируют, не вспоминают аргументы, а главное — не делают выводов.
+                </p>
+            </div>
+
+            <div class="problem-card reveal">
+                <div class="problem-icon">🎯</div>
+                <h3>Не удаётся мягко влиять и убеждать</h3>
+                <p>
+                    Хочется донести свою точку зрения, но вместо согласия получаете сопротивление, спор или равнодушие — хотя доводы у вас сильные.
+                </p>
+            </div>
+
+            <div class="problem-card reveal">
+                <div class="problem-icon">🧠</div>
+                <h3>Волнение «съедает» вашу уверенность</h3>
+                <p>
+                    Даже зная материал, в моменте вы теряетесь: голос дрожит, мысли путаются, а вместо сильного образа получается «нервный рассказ».
+                </p>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!-- ===== BENEFITS ===== -->
