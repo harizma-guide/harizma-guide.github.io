@@ -512,14 +512,38 @@
         }
         .modal-overlay.active { display: flex; animation: fadeUp 0.4s ease; }
         .modal {
-            max-width: 480px;
-            width: 100%;
-            background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
-            border: 1px solid var(--gold-dark);
-            border-radius: 6px;
-            padding: 2.5rem;
-            position: relative;
-        }
+    max-width: 480px;
+    width: 100%;
+    background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+    border: 1px solid var(--gold-dark);
+    border-radius: 6px;
+    padding: 2.5rem;
+    position: relative;
+
+    /* ГЛАВНОЕ: ограничиваем высоту и делаем скролл внутри */
+    max-height: 90vh;           /* не выше 90% высоты экрана */
+    overflow-y: auto;           /* скролл только внутри модалки */
+    display: flex;              /* чтобы контент прижимался, а не растягивался */
+    flex-direction: column;
+}
+
+/* Для телефонов уменьшаем отступы */
+@media (max-width: 768px) {
+    .modal {
+        max-height: 85vh;       /* чуть меньше, чтобы не упиралось в системные кнопки */
+        padding: 1.5rem 1rem;   /* меньше отступы по бокам */
+    }
+    .payment-warning h3 {
+        font-size: 1.4rem;      /* чуть меньше заголовок */
+    }
+    .payment-warning p {
+        font-size: 0.9rem;      /* текст компактнее */
+    }
+    .checkbox-container label {
+        font-size: 0.85rem;     /* подпись к чекбоксу меньше */
+    }
+}
+
         .modal-close {
             position: absolute;
             top: 15px; right: 15px;
@@ -933,29 +957,28 @@
 <div class="modal-overlay" id="paymentModal">
     <div class="modal">
         <button class="modal-close" onclick="closePayment()">&times;</button>
-        <div class="payment-warning">
-    <h3><strong>Важная информация перед оплатой</strong></h3><br>
-    
-    <p>После успешной оплаты на странице платёжной системы внизу появится кнопка <strong>"Перейти на сайт"</strong>. 
-    Обязательно нажмите на неё, иначе вы не получите PDF-файл.</p>
-    
-    <p>Если вы не перейдёте по этой кнопке и не получите файл, пожалуйста, напишите в техподдержку:
-    <strong>malik.gazetdinot@gmail.com</strong></p>
-    <p>Или позвоните по номеру телефона: <strong>89870472410</strong></p>
-    <p>Не пугайтесь, если сделать все правильно - будет нормально. Главное - интернет соединение должно быть стабильным</p>
-    
-    <div class="checkbox-container">
-        <input type="checkbox" id="agreement" required>
-        <label for="agreement">
-            Я прочитал(а) и согласен(на) с вышеуказанной информацией и беру на под свою ответственность все последующие последствия
-        </label>
-    </div>
-    
-    <button type="submit" disabled="disabled" class="pay-button">
-        Перейти к оплате
-    </button>
 
-    <script>
+        <div class="payment-warning">
+            <h3><strong>Важная информация перед оплатой</strong></h3>
+
+            <p>После успешной оплаты на странице платёжной системы внизу появится кнопка <strong>"Перейти на сайт"</strong>. Обязательно нажмите на неё, иначе вы не получите PDF-файл.</p>
+
+            <p>Если вы не перейдёте по этой кнопке и не получите файл, пожалуйста, напишите в техподдержку: <strong>malik.gazetdinot@gmail.com</strong></p>
+            <p>Или позвоните по номеру телефона: <strong>89870472410</strong></p>
+            <p>Не пугайтесь, если сделать всё правильно — будет нормально. Главное — интернет-соединение должно быть стабильным.</p>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="agreement" required>
+                <label for="agreement">
+                    Я прочитал(а) и согласен(на) с вышеуказанной информацией и беру на себя ответственность за все последующие последствия.
+                </label>
+            </div>
+
+            <button type="button" disabled="disabled" class="pay-button">
+                Перейти к оплате
+            </button>
+
+            <script>
         // JavaScript для активации кнопки при отмеченной галочке
         const checkbox = document.getElementById('agreement');
         const button = document.querySelector('.pay-button');
@@ -968,6 +991,10 @@
             window.location.href = 'https://harizma-guide.github.io/platesh-operation.htm';
         });
     </script>
+            
+        </div>
+    </div>
+</div>
 </div>
 
     </div>
