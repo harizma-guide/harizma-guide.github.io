@@ -1,41 +1,155 @@
-<br><link rel="stylesheet" href="https://yookassa.ru/integration/simplepay/css/yookassa_construct_form.css?v=1.35.0">
-<form class="yoomoney-payment-form" action="https://yookassa.ru/integration/simplepay/payment" method="post" accept-charset="utf-8" >
 
-    <div class="ym-products">
-    <div class="ym-block-title ym-products-title">Товары</div>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <!-- Самое важное для адаптации под мобильные -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оплата — Гид по Харизме</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
 
-    <div class="ym-product">
-            <div class="ym-product-line">
-                <span class="ym-product-description"><span class="ym-product-count">1.0×</span>Гид Харизма</span>
-                <span class="ym-product-price" data-price="1.0" data-id="848" data-count="1.0">1,00&nbsp;₽</span>
-            </div>
-            
-        <input disabled="" type="hidden" name="text" value="Гид Харизма"><input disabled="" type="hidden" name="price" value="1.0"><input disabled="" type="hidden" name="quantity" value="1.0"><input disabled="" type="hidden" name="paymentSubjectType" value="commodity"><input disabled="" type="hidden" name="paymentMethodType" value="full_prepayment"><input disabled="" type="hidden" name="tax" value="1"></div></div>
-    <input value="" type="hidden" name="ym_merchant_receipt">
+        /* Контейнер формы: не шире 500px на больших экранах, на мобильных — почти во всю ширину */
+        .payment-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
 
-    <div class="ym-customer-info">
-        <div class="ym-block-title">О покупателе</div>
-        <input name="cps_email" class="ym-input" placeholder="Email" type="text" value="">
-        
-        <input name="custName" class="ym-input" placeholder="ФИО" type="text" value="">
-        
-        
-        <textarea class="ym-textarea ym-display-none" name="orderDetails" placeholder="Комментарий" value="После оплаты обязательно нажмите на кнопку ниже &quot;Перейти на сайт&quot;, иначе вы свой PDF не получите">После оплаты обязательно нажмите на кнопку ниже "Перейти на сайт", иначе вы свой PDF не получите</textarea>
-    </div>
+        /* Заголовок перед формой (если нужен) */
+        .payment-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
 
-    <div class="ym-hidden-inputs">
-       <input name="shopSuccessURL" type="hidden" value="https://harizma-guide.github.io/platesh-succesfull.htm">
-       <input name="shopFailURL" type="hidden" value="https://harizma-guide.github.io/error.htm">
-       
-    </div>
+        .payment-header h1 {
+            font-size: 1.4rem;
+            color: #222;
+            margin: 0;
+        }
 
-    <input name="customerNumber" type="hidden" value="Покупка гида Харизма PDF">
-    
-    <div class="ym-payment-btn-block ym-before-line ym-align-space-between">
-        <div class="ym-input-icon-rub ym-display-none">
-            <input name="sum" placeholder="0.00" class="ym-input ym-sum-input ym-required-input" type="number" step="any" value="1">
+        /* Переопределение стилей полей ЮКассы для адаптивности */
+        .yoomoney-payment-form .ym-input,
+        .yoomoney-payment-form .ym-textarea {
+            width: 100% !important;
+            box-sizing: border-box; /* чтобы padding не ломал ширину */
+            margin-bottom: 12px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .yoomoney-payment-form .ym-block-title {
+            font-weight: 700;
+            color: #333;
+            margin-top: 16px;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        /* Кнопка оплаты: растягиваем на всю ширину на мобильных */
+        .ym-payment-btn-block {
+            margin-top: 20px;
+        }
+
+        .ym-btn-pay {
+            width: 100% !important;
+            max-width: 100%;
+            padding: 14px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* Логотип — не больше 80% ширины контейнера */
+        .ym-logo {
+            max-width: 80%;
+            height: auto;
+            display: block;
+            margin-top: 12px;
+        }
+
+        /* На очень маленьких экранах уменьшаем отступы */
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+            }
+            .payment-container {
+                padding: 16px;
+            }
+            .ym-input, .ym-textarea {
+                padding: 8px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="payment-container">
+        <div class="payment-header">
+            <h1>Оплата гида "Харизма"</h1>
+            <p style="color:#555; font-size:0.9rem; margin-top:6px;">
+                После оплаты нажмите кнопку «Вернуться на сайт» на странице платёжной системы в самом низу — это обязательный шаг для получения PDF, иначе вы не получите гид. В таком случае вам нужно обратиться в нашу техподдержку.
+            </p>
         </div>
-        <button data-text="Заплатить" class="ym-btn-pay ym-result-price"><span class="ym-text-crop">Заплатить</span> <span class="ym-price-output">1,00&nbsp;₽</span></button><img src="https://yookassa.ru/integration/simplepay/img/iokassa-gray.svg?v=1.35.0" class="ym-logo" width="114" height="27" alt="ЮKassa">
+
+        <link rel="stylesheet" href="https://yookassa.ru/integration/simplepay/css/yookassa_construct_form.css?v=1.35.0">
+        <form class="yoomoney-payment-form" action="https://yookassa.ru/integration/simplepay/payment" method="post" accept-charset="utf-8">
+            <div class="ym-products">
+                <div class="ym-block-title ym-products-title">Товары</div>
+                <div class="ym-product">
+                    <div class="ym-product-line">
+                        <span class="ym-product-description">
+                            <span class="ym-product-count">1.0×</span>Гид Харизма
+                        </span>
+                        <span class="ym-product-price" data-price="1.0" data-id="848" data-count="1.0">1,00&nbsp;₽</span>
+                    </div>
+                    <input disabled="" type="hidden" name="text" value="Гид Харизма">
+                    <input disabled="" type="hidden" name="price" value="1.0">
+                    <input disabled="" type="hidden" name="quantity" value="1.0">
+                    <input disabled="" type="hidden" name="paymentSubjectType" value="commodity">
+                    <input disabled="" type="hidden" name="paymentMethodType" value="full_prepayment">
+                    <input disabled="" type="hidden" name="tax" value="1">
+                </div>
+            </div>
+
+            <div class="ym-customer-info">
+                <div class="ym-block-title">О покупателе</div>
+                <input name="cps_email" class="ym-input" placeholder="Email" type="text" value="">
+                <input name="custName" class="ym-input" placeholder="ФИО" type="text" value="">
+                <textarea class="ym-textarea ym-display-none" name="orderDetails" placeholder="Комментарий" value=""></textarea>
+            </div>
+
+            <div class="ym-hidden-inputs">
+                <input name="shopSuccessURL" type="hidden" value="https://harizma-guide.github.io/platesh-succesfull.htm">
+                <input name="shopFailURL" type="hidden" value="https://harizma-guide.github.io/error.htm">
+            </div>
+
+            <input name="customerNumber" type="hidden" value="Покупка гида Харизма PDF">
+
+            <div class="ym-payment-btn-block ym-before-line ym-align-space-between">
+                <div class="ym-input-icon-rub ym-display-none">
+                    <input name="sum" placeholder="0.00" class="ym-input ym-sum-input ym-required-input" type="number" step="any" value="1">
+                </div>
+                <button data-text="Заплатить" class="ym-btn-pay ym-result-price">
+                    <span class="ym-text-crop">Заплатить</span>
+                    <span class="ym-price-output">1,00&nbsp;₽</span>
+                </button>
+                <img src="https://yookassa.ru/integration/simplepay/img/iokassa-gray.svg?v=1.35.0" class="ym-logo" width="114" height="27" alt="ЮKassa">
+            </div>
+        </form>
+        <input name="shopId" type="hidden" value="1475662">
     </div>
-<input name="shopId" type="hidden" value="1475662"></form>
-<script src="https://yookassa.ru/integration/simplepay/js/yookassa_construct_form.js?v=1.35.0"></script>
+
+    <script src="https://yookassa.ru/integration/simplepay/js/yookassa_construct_form.js?v=1.35.0"></script>
+</body>
+</html>
