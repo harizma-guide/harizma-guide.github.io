@@ -673,49 +673,64 @@
         }
         .download-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(212,175,55,0.4); }
 
-        /* ===== FAQ ===== */
-        .faq-section { background: var(--black-soft); }
-        .faq-item {
-            max-width: 750px;
-            margin: 0 auto 1rem;
-            border: 1px solid #2a2a2a;
-            border-radius: 4px;
-            overflow: hidden;
-            transition: border-color 0.3s;
-        }
-        .faq-item.active { border-color: var(--gold-dark); }
-        .faq-question {
-            padding: 1.5rem 2rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            color: var(--white);
-            user-select: none;
-            transition: all 0.3s;
-        }
-        .faq-question:hover { color: var(--gold); }
-        .faq-toggle {
-            color: var(--gold);
-            font-size: 1.3rem;
-            transition: transform 0.3s;
-        }
-        .faq-item.active .faq-toggle { transform: rotate(45deg); }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.3s;
-            padding: 0 2rem;
-            color: var(--gray);
-            font-size: 0.92rem;
-            line-height: 1.7;
-        }
-        .faq-item.active .faq-answer {
-            max-height: 300px;
-            padding: 0 2rem 1.5rem;
-        }
+        /* ===== FAQ STYLES ===== */
+.faq-section { background: var(--black-soft); }
+
+.faq-item {
+    max-width: 750px;
+    margin: 0 auto 1rem;
+    border: 1px solid #2a2a2a;
+    border-radius: 4px;
+    overflow: hidden; /* Важно: скрывает контент, выходящий за границы */
+    transition: border-color 0.3s;
+    background: var(--black-card); /* Для красоты */
+}
+
+.faq-item.active { border-color: var(--gold-dark); }
+
+.faq-question {
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    user-select: none;
+    transition: all 0.3s;
+}
+
+.faq-question:hover { color: var(--gold); }
+
+.faq-toggle {
+    color: var(--gold);
+    font-size: 1.3rem;
+    transition: transform 0.3s;
+}
+
+.faq-item.active .faq-toggle { transform: rotate(45deg); }
+
+/* САМОЕ ВАЖНОЕ: Логика скрытия/показа */
+.faq-answer {
+    color: var(--gray);
+    font-size: 0.92rem;
+    line-height: 1.7;
+    padding: 0 2rem;
+    
+    /* Начальное состояние: скрыто */
+    max-height: 0;
+    overflow: hidden;
+    
+    /* Плавная анимация изменения высоты */
+    transition: max-height 0.4s ease-out, padding 0.3s;
+}
+
+/* Состояние "Открыто": высота подстраивается под контент */
+.faq-item.active .faq-answer {
+    padding: 1.5rem 2rem; /* Добавляем отступ снизу при открытии */
+    max-height: 1000px; /* Достаточно большое значение, чтобы вместить любой текст */
+}
 
         /* ===== FOOTER ===== */
         footer {
@@ -905,7 +920,10 @@
         <div class="section-label reveal">Вопросы</div>
         <div class="divider-gold reveal"></div>
         <h2 class="section-title reveal">Частые <em>вопросы</em></h2>
-        <div style="max-width:750px;margin:3rem auto 0;">
+        
+        <div style="max-width:750px; margin:3rem auto 0;">
+            
+            <!-- Вопрос 1 -->
             <div class="faq-item reveal">
                 <div class="faq-question" onclick="toggleFAQ(this)">
                     <span>В каком формате гид?</span>
@@ -915,6 +933,8 @@
                     PDF-файл, который открывается на любом устройстве — телефон, планшет, компьютер.
                 </div>
             </div>
+
+            <!-- Вопрос 2 -->
             <div class="faq-item reveal">
                 <div class="faq-question" onclick="toggleFAQ(this)">
                     <span>Почему так дёшево — всего 99 ₽?</span>
@@ -924,6 +944,8 @@
                     Это цена для тех, кто действует сейчас. Гид содержит только суть без воды — вы получаете концентрат практики за минимальную цену.
                 </div>
             </div>
+
+            <!-- Вопрос 3 -->
             <div class="faq-item reveal">
                 <div class="faq-question" onclick="toggleFAQ(this)">
                     <span>Подойдёт ли новичку?</span>
@@ -933,19 +955,22 @@
                     Да. Гид написан простым языком, без академических терминов.
                 </div>
             </div>
+
+            <!-- Вопрос 4 (Тот самый длинный) -->
             <div class="faq-item reveal">
                 <div class="faq-question" onclick="toggleFAQ(this)">
                     <span>Как происходит оплата?</span>
                     <span class="faq-toggle">+</span>
                 </div>
                 <div class="faq-answer">
-                    Вы вводите email, телефон, ФИО и выбираете способ оплаты. После успешной оплаты PDF становится доступным для скачивания прямо на сайте. Обязательно на странице платежной системы после успешной оплаты нужно нажать на кнопку "Вернуться на сайт" чтобы получить PDF файл, иначе вы его не получите. А если не получили после успешной платы, обязательно обратитесь в техподдержку
+                    Вы вводите email, телефон, ФИО и выбираете способ оплаты. После успешной оплаты PDF становится доступным для скачивания прямо на сайте. Обязательно на странице платежной системы после успешной оплаты нужно нажать на кнопку "Вернуться на сайт", чтобы получить PDF файл, иначе вы его не получите. А если не получили после успешной платы, обязательно обратитесь в техподдержку.
                 </div>
             </div>
+
         </div>
     </div>
 </section>
-
+    
 <!-- ===== FOOTER ===== -->
 <footer style="background: #0a0a0a; border-top: 1px solid #333; padding: 20px 0; margin-top: 50px; font-size: 12px; color: #666; text-align: center;">
     <div>Техподдержка<br>Почта: <a href="mailto:malik.gazetdinot@gmail.com">malik.gazetdinot@gmail.com</a><br>Телефон: <a href="tel:+79870472410">8 (987) 047-24-10</a></div>
